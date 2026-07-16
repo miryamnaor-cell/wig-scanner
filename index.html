@@ -264,7 +264,6 @@ function showResult(id, type, mainText, currentLocation, desc, zohoVal, helperLo
     sold: 'יצאה מהמלאי',
     order: 'בהזמנה',
     wash: 'בחפיפה',
-
     storage: 'באחסון · אין שינוי'
   };
   const badge = badges[type] || '';
@@ -299,6 +298,14 @@ function showResult(id, type, mainText, currentLocation, desc, zohoVal, helperLo
     html += `
       <button class="btn-confirm display" id="confirmBtn" onclick="confirmAction('${id}','פאה בתצוגה','העברה לתצוגה','${encodeURIComponent(desc)}','','${webhookCurrentLoc}')">✓ העברי לתצוגה</button>
       <button class="btn-confirm" style="margin-top:8px;" onclick="confirmAction('${id}','פאה במגירה','העברה לאחסון','${encodeURIComponent(desc)}','','${webhookCurrentLoc}')">✓ העברי לאחסון</button>
+      <button class="btn-skip" onclick="reset()">השאירי כמו שזה</button>`;
+  } else if (type === 'storage') {
+    html += `
+      <button class="btn-confirm display" id="confirmBtn" onclick="confirmAction('${id}','פאה בתצוגה','העברה לתצוגה','${encodeURIComponent(desc)}','','${webhookCurrentLoc}')">✓ העברי לתצוגה</button>
+      <button class="btn-skip" onclick="reset()">השאירי כמו שזה</button>`;
+  } else if (type === 'none') {
+    html += `
+      <button class="btn-confirm" id="confirmBtn" onclick="confirmAction('${id}','פאה במגירה','להעביר לאחסון','${encodeURIComponent(desc)}','','${webhookCurrentLoc}')">✓ העברי לאחסון</button>
       <button class="btn-skip" onclick="reset()">השאירי כמו שזה</button>`;
   } else if (zohoVal) {
     html += `
